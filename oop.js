@@ -42,11 +42,87 @@
 
 // var apartment = new house.constructor();
 
+// a function is a special object in JavaScript, like an object literal; it's got a prototype...
+
 // define a constructor called Accommodation
-function Accommodation() {}
-// assign props. to our 'class' blueprint
-Accommodation.prototype.floors = 0;
-Accommodation.prototype.rooms = 0;
-Accommodation.prototype.sharedEntrance = false;
+// function Accommodation() {}
+// // assign props. to our 'class' blueprint
+// Accommodation.prototype.floors = 0;
+// Accommodation.prototype.rooms = 0;
+// Accommodation.prototype.sharedEntrance = false;
+// // assign methods to out class blueprint...
+// Accommodation.prototype.lock = function() {};
+// Accommodation.prototype.unlock = function() {};
+// // create object instances from our Accommodation class...
+// var house = new Accommodation();
+// var apartment = new Accommodation();
+// console.log(house.floors);
+// console.log(apartment.rooms);
+// // set the values for the instances...
+// house.floors = 2;
+// apartment.floors = 1;
+// house.unlock();
+// apartment.lock();
+// the prototype is just an object...
+// it's a prop. that sits in the function object...
+// define our constructor...
+// function Accommodation() {}
+// // assign props. and meths. via an object literal...
+// Accommodation.prototype = {
+// 	floors: 0,
+// 	rooms: 0,
+// 	sharedEntrance: false,
+// 	lock: function() {},
+// 	unlock: function() {}
+// };
+// create instances...
+// var house = new Accommodation();
+// var apartment = new Accommodation();
+// console.log(house.floors);
+// console.log(apartment.rooms);
+// house.floors = 2;
+// apartment.rooms = 2;
+// house.unlock();
+// apartment.lock();
 
+// Accommodation.prototype.alarm = function() {};
 
+// // house and apartment now automatically have a new method 'alarm...'
+
+// house.alarm();
+// apartment.alarm();
+
+// variables declared outside of any function are in the global namespace/scope...
+
+// var myLibrary = {
+// 	myName: "Byrdann"
+// };
+
+// // innerVariable = 26; // error...
+
+// function doSomething() {
+// 	// variables declared within a function are not accessible from outside of that function...
+// 	var innerVariable = 25;
+// 	myLibrary.myName = "Byrdann Fox";
+// 	function doSomethingElse() {
+// 		// variables declared in a surrounding scope are accessible...
+// 		innerVariable = 26;
+// 	}
+// 	doSomethingElse();
+// 	console.log(myLibrary.myName);
+// 	console.log(innerVariable);
+// }
+// doSomething();
+
+// this === the context of a function...
+
+// outside of any function 'this' refers to the window object (in the browser only), not Node.js...
+var home = {
+	isLocked: false,
+	lock: function() {
+		console.log(this === home);
+		this.isLocked = true;
+	}
+};
+home.lock();
+console.log(home.isLocked);
