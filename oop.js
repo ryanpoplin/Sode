@@ -30,16 +30,23 @@
 // };
 
 // Since JavaScript is not like classical languages, Classes are replaced with Constructors...
-function Accommodation() {};
-var house = new Accommodation();
-var apartment = new Accommodation();
+// function Accommodation() {}
+// var house = new Accommodation();
+// var apartment = new Accommodation();
 
-house.constructor === Accommodation;
-apartment.constructor === Accommodation;
+// house.constructor === Accommodation;
+// apartment.constructor === Accommodation;
 
-house instanceof Accommodation;
-apartment instanceof Accommodation;
+// house instanceof Accommodation;
+// apartment instanceof Accommodation;
 
-// var apartment = new house.constructor();	
+// var apartment = new house.constructor();
+
+// define a constructor called Accommodation
+function Accommodation() {}
+// assign props. to our 'class' blueprint
+Accommodation.prototype.floors = 0;
+Accommodation.prototype.rooms = 0;
+Accommodation.prototype.sharedEntrance = false;
 
 
