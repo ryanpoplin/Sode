@@ -1,3 +1,6 @@
+// A REFRESHER FOR OOP IN JAVASCRIPT, CUZ IT'S SO DIFFERENT FROM SWIFT! =) 
+// REF: PRO JAVASCRIPT DEVELOPMENT BOOK, GET IT ON AMAZON, IT'S BALLER!
+
 // var house = {
 // 	rooms: 7,
 // 	sharedEntrance: false,
@@ -117,12 +120,24 @@
 // this === the context of a function...
 
 // outside of any function 'this' refers to the window object (in the browser only), not Node.js...
-var home = {
+// var home = {
+// 	isLocked: false,
+// 	lock: function() {
+// 		console.log(this === home);
+// 		this.isLocked = true;
+// 	}
+// };
+// home.lock();
+// console.log(home.isLocked);
+
+var apartment = {
 	isLocked: false,
 	lock: function() {
-		console.log(this === home);
+		// nested functions within an object take on the global window object rather than the surrounding scope...
+		// 'this' refers to apartment object...
+		var that = this;
+		// set the isLocked prop.
 		this.isLocked = true;
 	}
 };
-home.lock();
-console.log(home.isLocked);
+
