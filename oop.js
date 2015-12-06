@@ -131,13 +131,22 @@
 // console.log(home.isLocked);
 
 var apartment = {
-	isLocked: false,
+	console.log(this === apartment);
+ 	isLocked: false,
+ 	// it's sort of like the 'this' keyword contexts to the object it's in, 
 	lock: function() {
 		// nested functions within an object take on the global window object rather than the surrounding scope...
 		// 'this' refers to apartment object...
 		var that = this;
 		// set the isLocked prop.
 		this.isLocked = true;
+		function doSomething() {
+			console.log(this === apartment);
+			console.log(this === window);
+			console.log(that === apartment);
+			that.isLocked = false;
+		}
+		doSomething();
 	}
 };
-
+apartment.lock();
