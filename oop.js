@@ -130,23 +130,121 @@
 // home.lock();
 // console.log(home.isLocked);
 
-var apartment = {
-	console.log(this === apartment);
- 	isLocked: false,
- 	// it's sort of like the 'this' keyword contexts to the object it's in, 
-	lock: function() {
-		// nested functions within an object take on the global window object rather than the surrounding scope...
-		// 'this' refers to apartment object...
-		var that = this;
-		// set the isLocked prop.
-		this.isLocked = true;
-		function doSomething() {
-			console.log(this === apartment);
-			console.log(this === window);
-			console.log(that === apartment);
-			that.isLocked = false;
-		}
-		doSomething();
-	}
+// var apartment = {
+//  	isLocked: false,
+// 	lock: function() {
+// 		// 'nested functions' within an object take on the global window object rather than the surrounding scope...
+// 		// 'this' refers to apartment object...
+// 		var that = this;
+// 		// set the isLocked prop.
+// 		this.isLocked = true;
+// 		function doSomething() {
+// 			console.log(this === apartment);
+// 			// in the browser...
+// 			// console.log(this === window);
+// 			console.log(this === global);
+// 			console.log(that === apartment);
+// 			that.isLocked = false;
+// 			function anotherSomething() {
+// 				console.log(this === global);
+// 				console.log(that === apartment);
+// 			}
+// 			anotherSomething();
+// 		}
+// 		doSomething();
+// 	}
+// };
+// apartment.lock();
+
+// function Accommodation() {
+// 	// 'this' refers to object instances created from this class...
+// 	this.floors = 0;
+// 	this.rooms = 0;
+// 	this.sharedEntrance = false;
+// 	this.isLocked = false;
+// 	this.lock = function() {
+// 		// this refers to the surrounding object, which in this case is the object instance created...
+// 		this.isLocked = true;
+// 	}
+// 	this.unlock = function() {
+// 		this.isLocked = false;
+// 	}
+// }
+
+// var house = new Accommodation();
+// var apartment = new Accommodation();
+
+// // read, write, execute...
+// console.log(house.floors);
+// apartment.lock();
+
+// combo of this and prototype...
+// function Accommodation() {
+// 	this.floors = 0;
+// 	this.isLocked = true;
+// }
+
+// Accommodation.prototype.lock = function() {
+// 	this.isLocked = true;
+// };
+// Accommodation.prototype.unlock = function() {
+// 	this.isLocked = false;
+// }
+// Accommodation.prototype.context = function() {
+// 	// how to test for 'this' here???
+// 	console.log(this !== global);
+// 	function context() {
+// 		console.log(this === global);
+// 	}
+// 	context();
+// }
+
+// var home = new Accommodation();
+// home.context();
+
+// function Accommodation(floors, rooms, sharedEntrance) {
+// 	// again, this here refers to the instance created from Accommodation...
+// 	this.floors = floors || 0;
+// 	this.rooms = rooms || 0;
+// 	this.sharedEntrance = sharedEntrance || false;
+// }
+
+// // if a value does not need to be set at init, put it on the prototype...
+// // this is a lot more efficient b/c you've only set this to the Accommodation's prototype object once! =)
+// Accommodation.prototype.isLocked = true;
+// Accommodation.prototype.lock = function() {
+// 	this.isLocked = true;
+// };
+// Accommodation.prototype.unlock = function() {
+// 	this.isLocked = false;
+// };
+
+// var house = Accommodation(3, 4, true);
+
+// So yea, doing this sucks: Accommodation(2, 3, 4, 5, 6, 7, 8, 9, true, false, true, false);
+// what's the better solution?
+
+function Accommodation(defaults) {
+	defaults = defaults || {};
+	this.floors = defaults.floors || 0;
+	this.rooms = defaults.rooms || 0;
+	this.sharedEntrance = defaults.sharedEntrance || false;	
+}
+// remember, for all methods in general, and for props. that don't need to have a specific value at initialization, add it to the prototype object!
+Accommodation.prototype.isLocked = true;
+Accommodation.prototype.lock = function() {
+	this.isLocked = true;
 };
-apartment.lock();
+Accommodation.prototype.unlock = function() {
+	this.isLocked = false;
+};
+
+var apartment = new Accommodation({
+	floors: 1,
+	rooms: 2
+});
+
+// unlike classical languages, you do not have to include values for all the possible argument on init!
+
+// keep .__proto__ in mind also, (refer to greenville.js)!
+
