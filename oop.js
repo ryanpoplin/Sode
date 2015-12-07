@@ -265,3 +265,27 @@
 // // unlike classical languages, you do not have to include values for all the possible argument on init!
 // // keep .__proto__ in mind also, (refer to greenville.js)!
 
+// function Accommodation() {}
+// Accommodation.prototype.isLocked = true;
+// Accommodation.prototype.lock = function() {
+// 	this.isLocked = true;
+// 	console.log('lock');
+// 	// return the context...
+// 	// this is the object instance...
+// 	return this;
+// };
+// Accommodation.prototype.unlock = function() {
+// 	this.isLocked = false;
+// 	console.log('unlock');
+// 	return this;
+// };
+// Accommodation.prototype.alarm = function() {
+// 	// make a beep noise to show data altering the system...
+// 	console.log('Sound the damn alarm!');
+// 	return this;
+// };
+// var house = new Accommodation();
+// house.lock().alarm().unlock();
+// returning the instance 'house' or 'whatever' you can chain methods together of that same instance instead of calling them individually...
+
+// subclassing in JavaScript is done by using prototypal inheritance...
