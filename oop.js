@@ -232,8 +232,17 @@ function Accommodation(defaults) {
 }
 // remember, for all methods in general, and for props. that don't need to have a specific value at initialization, add it to the prototype object!
 Accommodation.prototype.isLocked = true;
+Accommodation.prototype.isSecure = false;
 Accommodation.prototype.lock = function() {
 	this.isLocked = true;
+	// get ref. to this scope...
+	var that = this;
+	// keep the scope chain in mind!
+	(function() {
+		that.isSecure = true;
+		// always remeber your scope ref!
+		console.log(this === global);
+	}());
 };
 Accommodation.prototype.unlock = function() {
 	this.isLocked = false;
@@ -244,7 +253,15 @@ var apartment = new Accommodation({
 	rooms: 2
 });
 
+console.log(apartment);
+// the prototype object is associated with the constructor, not the instance, and it's sort of globally referred to by all the instances of it...
+console.log(Accommodation.prototype);
+// for instance ref...
+console.log(apartment.__proto__);
+// the fuck is going on here???
+console.log(apartment.constuctor === Accommodation);
+apartment.lock();
+console.log(apartment.isSecure)
 // unlike classical languages, you do not have to include values for all the possible argument on init!
-
 // keep .__proto__ in mind also, (refer to greenville.js)!
 
