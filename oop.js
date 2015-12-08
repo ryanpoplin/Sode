@@ -289,3 +289,38 @@
 // returning the instance 'house' or 'whatever' you can chain methods together of that same instance instead of calling them individually...
 
 // subclassing in JavaScript is done by using prototypal inheritance...
+// the 'class' with two methods...
+function Accommodation() {
+	// ...
+}
+Accommodation.prototype.lock = function() {};
+Accommodation.prototype.unlock = function() {};
+
+// define a constructor that will become a subclass of Accommodation class...
+function House(defaults) {
+	defaults = defaults || {};
+	this.floors = 2;
+	this.rooms = defaults.rooms || 7;
+}
+House.prototype = new Accommodation();
+// must do this or instances of House will point to the Super Class...
+House.prototype.constructor = House;
+// write an con. method to take of this quickly,
+function inheritanceConstructorFix(theClass) {
+	theClass.prototype.constructor = theClass;
+}
+var myHouse = new House();
+var myNeighborsHouse = new House({
+	rooms: 8
+});
+// =-)
+console.log(Accommodation.prototype);
+console.log(House.prototype);
+console.log(Accommodation.__proto__.__proto__);
+console.log(House.__proto__.__proto__);
+console.log(myHouse.__proto__.__proto__);
+// =-)
+console.log(myHouse.constructor === House);
+console.log(myHouse.constructor === Accommodation);
+console.log(myNeighborsHouse instanceof House);
+console.log(myNeighborsHouse instanceof Accommodation);
