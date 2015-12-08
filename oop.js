@@ -325,3 +325,39 @@
 // console.log(myNeighborsHouse instanceof House);
 // console.log(myNeighborsHouse instanceof Accommodation);
 
+// encapsulation is good to go...
+
+// polymorphism...
+// function Accommodation() {
+// 	this.isLocked = false;
+// 	this.isAlarmed = false;
+// }
+// Accommodation.prototype.lock = function() {
+// 	this.isLocked = true;
+// };
+// Accommodation.prototype.unlock = function() {
+// 	this.isLocked = false;
+// };
+// Accommodation.prototype.alarm = function() {
+// 	this.isAlarmed = true;
+// 	console.log('asdfjkl;');
+// };
+// Accommodation.prototype.deactivateAlarm = function() {
+// 	this.isAlarmed = false;
+// 	console.log('asdfjkl;');
+// };
+
+// function House() {}
+// House.prototype = new Accommodation();
+// // the polymorphism part...
+// // like overriding in classical langs...
+// House.prototype.lock = function() {
+// 	// using 'this' to refer the the object instance; 
+// 	Accommodation.prototype.lock.call(this);
+// 	this.alarm();
+// };
+// House.prototype.unlock = function() {
+// 	Accommodation.prototype.unlock.call(this);
+// 	this.deactivateAlarm();
+// };
+
