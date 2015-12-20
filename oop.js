@@ -347,22 +347,21 @@
 // 	console.log('asdfjkl;');
 // };
 
-function House() {}
-House.prototype = new Accommodation();
-// the polymorphism part...
-// like overriding in classical langs...
-House.prototype.lock = function() {
-	// using 'this' to refer the the object instance; 
-	Accommodation.prototype.lock.call(this);
-	this.alarm();
-};
-House.prototype.unlock = function() {
-	Accommodation.prototype.unlock.call(this);
-	this.deactivateAlarm();
-};
+// function House() {}
+// House.prototype = new Accommodation();
+// // the polymorphism part...
+// // like overriding in classical langs...
+// House.prototype.lock = function() {
+// 	// using 'this' to refer the the object instance; 
+// 	Accommodation.prototype.lock.call(this);
+// 	this.alarm();
+// };
+// House.prototype.unlock = function() {
+// 	Accommodation.prototype.unlock.call(this);
+// 	this.deactivateAlarm();
+// };
 
 // more on apply and call methods...
 
 // 6687474346197990400848268200440
 // 6687474346197990400848268200440
-
