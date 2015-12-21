@@ -1,0 +1,22 @@
+{
+  "name": "sode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanpoplin/Sode.git"
+  },
+  "author": "Byrdann Fox",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryanpoplin/Sode/issues"
+  },
+  "homepage": "https://github.com/ryanpoplin/Sode#readme",
+  "dependencies": {
+    "hapi": "^11.1.2"
+  }
+}
